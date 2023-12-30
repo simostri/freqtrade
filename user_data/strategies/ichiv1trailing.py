@@ -21,7 +21,7 @@ class ichiV1trailing(IStrategy):
         "buy_trend_above_senkou_level": 1,
         "buy_trend_bullish_level": 6,
         "buy_fan_magnitude_shift_value": 3,
-        "buy_min_fan_magnitude_gain": 1.002 # NOTE: Good value (Win% ~70%), alot of trades
+        "buy_min_fan_magnitude_gain": 1.008 # NOTE: Good value (Win% ~70%), alot of trades
         #"buy_min_fan_magnitude_gain": 1.008 # NOTE: Very save value (Win% ~90%), only the biggest moves 1.008,
     }
 
@@ -117,7 +117,7 @@ class ichiV1trailing(IStrategy):
         dataframe['trend_open_6h'] = ta.EMA(dataframe['open'], timeperiod=360)
         dataframe['trend_open_8h'] = ta.EMA(dataframe['open'], timeperiod=480)
 
-        dataframe['fan_magnitude'] = (dataframe['trend_close_1h'] / dataframe['trend_close_8h'])
+        dataframe['fan_magnitude'] = (dataframe['trend_close_30min'] / dataframe['trend_close_2h'])
         dataframe['fan_magnitude_gain'] = dataframe['fan_magnitude'] / dataframe['fan_magnitude'].shift(1)
 
         ichimoku = ftt.ichimoku(dataframe, conversion_line_period=100, base_line_periods=300, laggin_span=600, displacement=150)
