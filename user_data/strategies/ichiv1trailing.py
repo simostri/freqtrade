@@ -21,7 +21,7 @@ class ichiV1trailing(IStrategy):
         "buy_trend_above_senkou_level": 1,
         "buy_trend_bullish_level": 6,
         "buy_fan_magnitude_shift_value": 3,
-        "buy_min_fan_magnitude_gain": 1.002 # NOTE: Good value (Win% ~70%), alot of trades
+        "buy_min_fan_magnitude_gain": 1.001 # NOTE: Good value (Win% ~70%), alot of trades
         #"buy_min_fan_magnitude_gain": 1.008 # NOTE: Very save value (Win% ~90%), only the biggest moves 1.008,
     }
 
@@ -33,7 +33,10 @@ class ichiV1trailing(IStrategy):
 
     # ROI table:
     minimal_roi = {
-        "0": 0.02
+        "0": 0.059,
+        "10": 0.037,
+        "41": 0.012,
+        "114": 0
     }
 
     # Stoploss:
@@ -45,10 +48,10 @@ class ichiV1trailing(IStrategy):
     #startup_candle_count = 96
     process_only_new_candles = False
 
-    trailing_stop = False
-    #trailing_stop_positive = 0.03
-    #trailing_stop_positive_offset = 0.05
-    #trailing_only_offset_is_reached = True
+    trailing_stop = True
+    trailing_stop_positive = 0.003
+    trailing_stop_positive_offset = 0.005
+    trailing_only_offset_is_reached = True
 
     use_sell_signal = True
     sell_profit_only = False
